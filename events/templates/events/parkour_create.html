@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block body_content %}
+<div class="container-fluid">
+    <h1>Parkour Create</h1>
+    <form method="post" class="form well .form-group" >
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Create" class="btn btn-default">
+    </form>
+</div>
+{% endblock %}
+
+
+{% block endscript %}
+    <script src="{% static 'assets/js/bootstrap-datepicker.js' %}" charset="utf-8"></script>
+    <script type="text/javascript">
+        a = document.getElementsByName("time")[0];
+        a.placeholder = "H:M";
+    </script>
+{% endblock %}

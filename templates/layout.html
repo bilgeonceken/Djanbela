@@ -1,0 +1,29 @@
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    {# Load the tag library #}
+    {% bootstrap_css %}
+    <link href="{% static 'assets/css/ct-paper.css' %}" rel="stylesheet" />
+    {% block head %}{% endblock %}
+    <title></title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    {% bootstrap_messages %}
+
+    {% block body_content %} {% endblock %}
+
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}" charset="utf-8"></script>
+    {% bootstrap_javascript %}
+    <script src="{% static 'assets/js/ct-paper.js' %}" charset="utf-8"></script>
+    {% block endscript %}{% endblock %}
+</body>
+
+</html>

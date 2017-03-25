@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<div class="container-fluid">
+
+
+<table class="table table-responsive">
+    <thead>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>Joined at</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        {% for member in object_list %}
+            <tr class="active">
+                <td>{{member.first_name}}</td>
+                <td>{{member.last_name}}</td>
+                <td>{{member.date_joined}}</td>
+                <td>{{member.email}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
