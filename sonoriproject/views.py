@@ -22,17 +22,3 @@ class UserListView(generic.ListView):
     ## this is how listview rolls in template
     model = User
     template_name = "user_list.html"
-
-
-##TODO: provide html and urls for these below
-# class ActiveEventListView(generic.ListView):
-#     template_name = "active_event_list.html"
-#
-#     def get_queryset(self):
-#         return models.Event.objects.filter(is_active=True)
-#
-# class PastEventListView(generic.ListView):
-#     template_name = "past_event_list.html"
-#
-#     def get_queryset(self):
-#         return models.Event.objects.filter(is_active=True)
