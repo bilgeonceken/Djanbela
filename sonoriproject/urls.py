@@ -22,11 +22,14 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.login, name="login"),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'logout.html', 'next_page': '/login'},  name="logout"),
-    url(r'^signup/$', views.SignupView.as_view(),  name="signup"),
+    url(r'^accounts/login/$', auth_views.login, name="login"),
+    url(r'^accounts/logout/$', auth_views.logout, {'template_name': 'logout.html', 'next_page': '/login'},  name="logout"),
+    url(r'^accounts/signup/$', views.SignupView.as_view(),  name="signup"),
+    url(r'^accounts/profile/$', views.UserProfileView.as_view(), name="profile"),
     url(r'^users/$', views.UserListView.as_view(), name="users"),
-    url(r'^events/', include('events.urls', namespace="events"))
+    url(r'^user/(?P<pk>\d+)/$', views.PublicProfileView.as_view(), name="public_profile"),
+    url(r'^events/', include('events.urls', namespace="events")),
+    url(r'^$', views.HomeView.as_view(), name="home"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

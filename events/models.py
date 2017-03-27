@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.contrib.auth.models import User
 # Create your models here.
 #
@@ -7,7 +8,7 @@ class Event(models.Model):
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
     created_at = models.DateTimeField(auto_now=True)
-    competitors = models.ManyToManyField(User)
+    competitors = models.ManyToManyField(User, blank=True)
 
 
     def __str__(self):
@@ -21,6 +22,11 @@ class Event(models.Model):
 class ParkourEvent(Event):
     description = models.TextField()
     is_active = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+                    #namespace:func_name
+        return reverse("events:parkour_detail", kwargs={"pk":self.pk})
+
 
 class RunningEvent(Event):
     pass

@@ -2,22 +2,22 @@
 
 {% block body_content %}
 <div class="container-fluid">
-
-
 <table class="table table-responsive">
     <thead>
-        <th>First Name</th>
-        <th>Last name</th>
+        <th>Username</th>
+        <th>Name</th>
         <th>Joined at</th>
         <th>Email</th>
+        <th>Is Staff</th>
     </thead>
     <tbody>
         {% for member in object_list %}
             <tr class="active">
-                <td>{{member.first_name}}</td>
-                <td>{{member.last_name}}</td>
+                <td><a href="{% url 'public_profile' pk=member.pk %}">{{ member.username }}</a></td>
+                <td>{{member.first_name}} {{member.last_name}}</td>
                 <td>{{member.date_joined}}</td>
                 <td>{{member.email}}</td>
+                <td>{{member.is_staff}}</td>
             </tr>
         {% endfor %}
     </tbody>

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block body_content %}
+<div class="container-fluid">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">{{user.username}}'s Profile</div>
+        <div class="panel-body">
+        <ul>
+            <li>Name: {{user.first_name}} {{user.last_name}}</li>
+            <li>Date Joined: {{user.date_joined}}</li>
+            <li>Email: {{user.email}}</li>
+        </ul>
+            Total Parkours: {{user.parkourevent_set.all.count}}
+            Total Runs: {{user.runningevent_set.all.count}}
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

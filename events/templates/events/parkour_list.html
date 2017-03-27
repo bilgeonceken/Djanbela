@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block body_content %}
+<div class="container-fluid">
+  <form id="searchform" action="{% url 'events:parkour_search' %}" method="get" accept-charset="utf-8">
+      <button class="searchbutton" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+    </form>
+    {% for parkourevent in parkours %}
+        <div class="panel panel-default">
+        <div class="panel-heading"><a href="{% url 'events:parkour_detail' pk=parkourevent.pk %}">{{parkourevent.title}}</a></div>
+            <div class="panel-body">
+                {{parkourevent.description}}
+                <table class="table table-responsive">
+                    <thead>
+                        <th>#</th>
+                        <th>username</th>
+                        <th>email</th>
+                    </thead>
+                    <tbody>
+                        {% for user in parkourevent.competitors.all %}
+                        <tr>
+                            <td></td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if parkourevent.is_active %}
+                    {% if user not in parkourevent.competitors.all %}
+                    <form method='POST' action="{% url 'events:parkour_detail' pk=parkourevent.pk %}">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-primary" name="add" value="Add">
+                    </form>
+                    {% else %}
+                    <form method='POST' action="{% url 'events:parkour_detail' pk=parkourevent.pk %}">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-primary" name="remove" value="Remove">
+                    </form>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
+

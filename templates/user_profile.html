@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block body_content %}
+<div class="container-fluid">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">{{user.username}}'s Profile</div>
+        <div class="panel-body">
+            <form method='POST'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Save">
+            </form>
+            Total Parkours: {{user.parkourevent_set.all.count}}
+            Total Runs: {{user.runningevent_set.all.count}}
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}
