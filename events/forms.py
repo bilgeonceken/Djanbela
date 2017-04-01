@@ -4,8 +4,8 @@ from . import models
 
 class ParkourEventForm(forms.ModelForm):
 
-    ### I defined a dictonary instead of this
-    ### but i'll keep the line as a reference
+    ### I've customized the classes of the field in another way (ln. 28)
+    ### but i'll keep this line as a reference
     # date = forms.DateField(widget=forms.DateInput(attrs={"class": "datepicker form-control"}))
 
     class Meta:
@@ -27,6 +27,7 @@ class ParkourEventForm(forms.ModelForm):
 
         widgets = {
                 # ## It may not be the correct approach to do attrs in here
-                # ## But is definately easier at this moments. Check parkour_create.html
+                # ## But is definately the easier one at the moment. 
+                # Check parkour_create.html
             "date": forms.DateInput(attrs={"class": "datepicker form-control"})
         }
